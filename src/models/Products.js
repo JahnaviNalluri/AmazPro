@@ -1,0 +1,34 @@
+const mongoose=require("mongoose");
+const productSchema=mongoose.Schema({
+    productName:{
+        type:String,
+        required:true,
+        trim:true,
+    },
+    productDescription:{
+        type:String,
+        required:true,
+        trim:true,
+    },
+    price:{
+        type:Number,
+        required:true,
+        min:0,
+    },
+    images:[String],
+    vendorId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true,
+    },
+    isApproved:{
+        type:Boolean,
+        default:false,
+    },
+    stock:{
+        type:Number,
+        min:0,
+        default:0,
+    }
+},{timestamps:true})
+module.exports=mongoose.model("Product",productSchema);

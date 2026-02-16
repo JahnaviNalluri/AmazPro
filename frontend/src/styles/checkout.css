@@ -1,0 +1,11 @@
+.checkout-page {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.checkout-page button {
+  margin-top: 20px;
+  background: #2874f0;
+  color: white;
+  padding: 10px 20px;
+}

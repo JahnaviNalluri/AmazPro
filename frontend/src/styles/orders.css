@@ -1,0 +1,30 @@
+.orders-page {
+  margin-top: 40px;
+}
+
+.order-card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.order-product {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.order-image {
+  width: 80px;
+  height: 80px;
+  background: #ddd;
+  border-radius: 6px;
+}
