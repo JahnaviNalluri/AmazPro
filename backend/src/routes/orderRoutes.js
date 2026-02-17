@@ -11,4 +11,4 @@ router.put("/status/:id", protect, authorize("admin"), orderController.updateOrd
 router.put("/cancel/:id", protect, orderController.cancelOrder);
 router.put("/vendor/:id",protect,authorize("vendor"),orderController.updateOrderStatusByVendor);
 
-module.exports = router;
+module.exports = router; 

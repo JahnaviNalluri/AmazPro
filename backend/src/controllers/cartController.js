@@ -26,16 +26,20 @@ const addToCart = async (req, res) => {
 const updateCartItem = async (req, res) => {
     try {
         const { productId, quantity } = req.body;
+        const customerId = req.user.id;
+
         const cart = await cartService.updateCartItem(
-            req.user.id,
+            customerId,
             productId,
-            quantity
+            Number(quantity)
         );
-        res.status(200).json(cart);
+
+        res.json(cart);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 };
+
 
 const removeFromCart = async (req, res) => {
     try {

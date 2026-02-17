@@ -48,6 +48,15 @@ const addToCart = async (customerId, productId, quantity = 1) => {
 };
 
 const updateCartItem = async (customerId, productId, quantity) => {
+
+    if (!productId || quantity === undefined) {
+        throw new Error("Invalid productId or quantity");
+    }
+
+    if (isNaN(quantity)) {
+        throw new Error("Quantity must be a number");
+    }
+
     const cart = await Cart.findOne({ customerId });
 
     if (!cart) {
@@ -74,6 +83,7 @@ const updateCartItem = async (customerId, productId, quantity) => {
 
     return cart;
 };
+
 
 const removeFromCart = async (customerId, productId) => {
     const cart = await Cart.findOne({ customerId });
