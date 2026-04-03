@@ -10,21 +10,25 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await API.post("/users/login", form);
-      login(res.data);
+  e.preventDefault();
+  try {
+    const res = await API.post("/users/login", form);
 
-      const role = res.data.user.role;
+    login(res.data);
 
-      if (role === "vendor") navigate("/vendor");
-      else if (role === "admin") navigate("/admin");
-      else navigate("/customer");
+    // ✅ IMPORTANT: Fetch cart after login
+    await API.get("/cart");
 
-    } catch (err) {
-      alert(err.response?.data?.message);
-    }
-  };
+    const role = res.data.user.role;
+
+    if (role === "vendor") navigate("/vendor");
+    else if (role === "admin") navigate("/admin");
+    else navigate("/customer");
+
+  } catch (err) {
+    alert(err.response?.data?.message);
+  }
+};
 
   return (
     <div className="login-container">

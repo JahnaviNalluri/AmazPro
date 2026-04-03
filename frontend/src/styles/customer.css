@@ -3,7 +3,12 @@
   width: 100%;
   background-color: #007bff; /* navbar background */
 }
-
+.fixed-img {
+  width: 200px;    /* fixed width */
+  height: 200px;   /* fixed height */
+  object-fit: cover; /* maintain aspect ratio and crop if needed */
+  border-radius: 8px; /* optional styling */
+}
 .customer-header-navbar {
   max-width: 1200px;
   margin: 0 auto;
@@ -130,4 +135,42 @@
   background-color: #007bff;
   color: white;
   font-weight: 500;
+}
+.product-details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.product-details-card {
+  background: #fff;
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%;
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 90%;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.review-card {
+  border-top: 1px solid #ccc;
+  padding: 0.5rem 0;
 }

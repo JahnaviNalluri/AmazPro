@@ -1,52 +1,99 @@
 .cart-page {
   display: flex;
-  gap: 30px;
-  margin-top: 30px;
+  gap: 2rem;
+  padding-top: 80px; /* match header height */
+  margin: 0 auto;
 }
 
 .cart-left {
-  flex: 3;
-}
-
-.cart-card {
-  display: flex;
-  background: white;
-  padding: 20px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.cart-image {
-  width: 120px;
-  height: 120px;
-  background: #ddd;
-  border-radius: 6px;
-  margin-right: 20px;
-}
-
-.cart-details h3 {
-  margin-bottom: 10px;
-}
-
-.remove-btn {
-  background: #e53935;
-  color: white;
-  margin-top: 10px;
+  flex: 2;
 }
 
 .cart-summary {
   flex: 1;
-  background: white;
-  padding: 20px;
-  border-radius: 6px;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
   height: fit-content;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.cart-card {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
+}
+
+.cart-image img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-details h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.cart-details p {
+  margin: 0.2rem 0;
+}
+
+.out-of-stock {
+  color: red;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.qty-controls button {
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.qty-controls button:hover {
+  background-color: #e0e0e0;
+  border-color: #999;
+}
+
+.qty-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.qty-controls span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 500;
 }
 
 .checkout-btn {
   width: 100%;
-  margin-top: 20px;
-  background: #2874f0;
+  padding: 0.8rem;
+  background-color: #ff6b00;
   color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.checkout-btn:hover {
+  background-color: #e65c00;
 }

@@ -25,12 +25,7 @@
   font-weight: bold;
 }
 
-.add-btn {
-  background: #2874f0;
-  color: white;
-  padding: 10px 20px;
-  margin-top: 20px;
-}
+
 
 .reviews-section {
   margin-top: 50px;
@@ -53,4 +48,30 @@
   .details-image img {
     width: 100%;
   }
+}
+.product-actions {
+  display: flex;
+  gap: 1rem; /* space between buttons */
+  margin-top: 1rem;
+}
+
+.add-btn,
+.like-btn {
+
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+   padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.like-btn {
+  background-color: #ff4d4d;
+  color: white;
 }
