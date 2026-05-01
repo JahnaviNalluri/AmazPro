@@ -1,30 +1,55 @@
 .orders-page {
-  margin-top: 40px;
+  padding: 20px;
 }
 
 .order-card {
-  background: white;
-  padding: 20px;
+  background: #fff;
+  padding: 15px;
   margin-bottom: 20px;
-  border-radius: 6px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
 .order-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-.order-product {
-  display: flex;
-  gap: 15px;
   margin-bottom: 10px;
 }
 
-.order-image {
-  width: 80px;
-  height: 80px;
-  background: #ddd;
-  border-radius: 6px;
+.order-product-modern {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  position: relative;
+}
+
+.order-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.order-info {
+  flex: 1;
+}
+
+.stars span {
+  font-size: 18px;
+  margin-right: 3px;
+}
+
+.review-btn {
+  margin-top: 5px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.go-product {
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
 }

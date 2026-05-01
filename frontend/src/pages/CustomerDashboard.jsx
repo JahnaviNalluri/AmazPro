@@ -58,13 +58,21 @@ function CustomerDashboard() {
 
   // ---------------- CART ----------------
   const addToCart = async (product) => {
-    try {
-      await API.post("/cart", { productId: product._id, quantity: 1 });
-      fetchCart();
-    } catch (err) {
-      console.error("Error adding to cart:", err);
-    }
-  };
+  try {
+    // optional: instant UI feedback (if you want)
+    // setCart(prev => ...)
+
+    await API.post("/cart", {
+      productId: product._id,
+      quantity: 1,
+    });
+
+    // refresh cart AFTER update
+    await fetchCart();
+  } catch (err) {
+    console.error("Error adding to cart:", err.response?.data || err.message);
+  }
+};
 
   const updateCartQty = async (productId, quantity) => {
     if (quantity < 1) return;
@@ -86,12 +94,27 @@ function CustomerDashboard() {
   };
 
   // ---------------- LIKED ----------------
-  const likeProduct = (product) => {
-    if (!liked.find((p) => p._id === product._id)) {
-      setLiked([...liked, product]);
-    }
-  };
+const likeProduct = async (product) => {
+  try {
+    await API.post("/liked/add", {
+      productId: product._id,
+    });
 
+    // refresh liked list from backend
+    const res = await API.get("/liked");
+    setLiked(res.data.items || []);
+  } catch (err) {
+    console.error("Error liking product:", err);
+  }
+};
+const fetchLiked = async () => {
+  try {
+    const res = await API.get("/liked");
+    setLiked(res.data.items || []);
+  } catch (err) {
+    console.error(err);
+  }
+};
   // ---------------- PROFILE ----------------
   const handleProfileChange = (e) => {
     const { name, value } = e.target;
@@ -116,20 +139,17 @@ function CustomerDashboard() {
 
   // ---------------- INITIAL DATA ----------------
   useEffect(() => {
-    fetchAllProducts();
-    fetchOrders();
-    fetchProfile();
-    fetchCart();
-  }, []);
+  fetchAllProducts();
+  fetchOrders();
+  fetchProfile();
+  fetchCart();
+  fetchLiked(); // 👈 ADD THIS
+}, []);
 
   return (
-    <div className="customer-dashboard">
+    <div className="customer-dashboard" style={{ backgroundColor: "pink"}}>
       {/* ---------------- HEADER ---------------- */}
-       <Header
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        handleLogout={handleLogout}
-      />
+       
 
       {/* ---------------- PRODUCT DETAILS MODAL ---------------- */}
      
@@ -148,21 +168,24 @@ function CustomerDashboard() {
               <p>₹ {product.price}</p>
               
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  addToCart(product);
-                }}
-              >
-                Add to Cart
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  likeProduct(product);
-                }}
-              >
-                ❤️ Like
-              </button>
+  onClick={(e) => {
+    e.stopPropagation(); // This will stop the event from propagating to parent elements
+    addToCart(product);
+  }}
+  className="add-to-cart" // Apply class here
+>
+  Add to Cart
+</button>
+
+<button
+  onClick={(e) => {
+    e.stopPropagation();
+    likeProduct(product);
+  }}
+  className="like-button" // Apply class here
+>
+  ❤️ Like
+</button>
             </div>
           ))}
         </div>
@@ -178,7 +201,7 @@ function CustomerDashboard() {
         <>
           <h3>Liked Products</h3>
           {liked.length === 0 && <p>You have not liked any products yet.</p>}
-          <div className="dashboard-grid">
+          <div className="dashboard-grid" style={{ backgroundColor: "pink"}}>
             {liked.map((p) => (
               <div key={p._id} className="dashboard-card">
                 <img src={p.images?.[0] || "/placeholder.png"} alt={p.productName} />
@@ -196,7 +219,7 @@ function CustomerDashboard() {
         <>
           <h3>My Orders</h3>
           {orders.length === 0 && <p>No orders found.</p>}
-          <div className="dashboard-grid">
+          <div className="dashboard-grid" style={{ backgroundColor: "pink"}}>
             {orders.map((order) => (
               <div key={order._id} className="dashboard-card">
                 <p>
@@ -213,12 +236,20 @@ function CustomerDashboard() {
                   <strong>Will arrive in:</strong> 3-7 days
                 </p>
                 {order.products?.map((prod) => (
-                  <div key={prod._id} className="order-product">
-                    <img src={prod.images?.[0]} alt={prod.productName} />
-                    <h5>{prod.productName}</h5>
-                    <p>₹ {prod.price}</p>
-                  </div>
-                ))}
+  <div key={prod._id} className="order-product">
+
+    <img
+      src={prod.productId?.images?.[0]}
+      alt={prod.productId?.productName}
+    />
+
+    <h5>{prod.productId?.productName}</h5>
+
+    <p>Qty: {prod.quantity}</p>
+    <p>₹ {prod.price}</p>
+
+  </div>
+))}
                 <p>
                   <strong>Total:</strong> ₹ {order.totalAmt}
                 </p>

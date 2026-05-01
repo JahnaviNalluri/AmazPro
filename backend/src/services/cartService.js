@@ -1,8 +1,10 @@
 const Cart = require("../models/Cart");
 const Product = require("../models/Products");
-
 const getCart = async (customerId) => {
-    let cart = await Cart.findOne({ customerId });
+    let cart = await Cart.findOne({ customerId })
+        .populate("items.productId", "productName productDescription images price stock");
+
+    console.log("Populated Cart:", cart);  // Log the cart object after population
 
     if (!cart) {
         cart = await Cart.create({ customerId, items: [] });
@@ -10,7 +12,6 @@ const getCart = async (customerId) => {
 
     return cart;
 };
-
 const addToCart = async (customerId, productId, quantity = 1) => {
     const product = await Product.findById(productId);
 

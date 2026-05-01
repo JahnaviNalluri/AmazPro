@@ -1,6 +1,9 @@
 .checkout-page {
   margin-top: 60px;
   text-align: center;
+    min-height: 100vh;   /* ✅ IMPORTANT FIX */
+  width: 100%;         /* ensure full width */
+  box-sizing: border-box;
 }
 
 .checkout-page button {

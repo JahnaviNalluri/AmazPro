@@ -42,7 +42,8 @@ const getOrderById = async (orderId) => {
 };
 
 const getCustomerOrders = async (customerId) => {
-    return await Order.find({ customerId });
+    return await Order.find({ customerId })
+  .populate("products.productId", "productName images price");
 };
 
 const updateOrderStatus = async (orderId, status) => {

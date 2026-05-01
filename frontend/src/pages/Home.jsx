@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
-import ProductCard from "../components/productCard";
-import Header from "../pages/Header"; // make sure the path is correct
 import "../styles/home.css";
 
 function Home() {
   const [products, setProducts] = useState([]);
-  const [activeTab, setActiveTab] = useState("home"); // track active tab
+  const [activeTab] = useState("home");
+
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
+  };
+
+  const addToCart = (product) => {
+    console.log("Add to cart:", product);
+  };
+
+  const likeProduct = (product) => {
+    console.log("Liked:", product);
   };
 
   useEffect(() => {
@@ -26,21 +35,53 @@ function Home() {
   }, []);
 
   return (
-    <>
-      <Header
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        handleLogout={handleLogout}
-      />
+    
       <div className="container">
         <h2 className="page-title">All Products</h2>
-        <div className="product-grid">
-          {products.map((product) => (
-            <ProductCard key={product._id} product={product} />
-          ))}
-        </div>
+
+        {activeTab === "home" && (
+          <div className="dashboard-grid">
+            {products.map((product) => (
+              <div
+                key={product._id}
+                className="dashboard-card"
+                onClick={() => navigate(`/product/${product._id}`)}
+              >
+                <img
+                  src={product.images?.[0] || "/placeholder.png"}
+                  alt={product.productName}
+                />
+
+                <h4>{product.productName}</h4>
+
+                <p className="price">₹ {product.price}</p>
+
+                <div className="card-actions">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      addToCart(product);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+
+                  <button
+                    className="like-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      likeProduct(product);
+                    }}
+                  >
+                    ❤️ Like
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-    </>
+    
   );
 }
 

@@ -1,9 +1,15 @@
+
 .details-top {
   display: flex;
   gap: 40px;
   margin-top: 40px;
 }
+.details-container {
+  background: pink;
+  margin-left: 30px;
 
+  
+}
 .details-image img {
   width: 350px;
   height: 350px;

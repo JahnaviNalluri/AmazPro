@@ -1,16 +1,117 @@
-.page-title {
-  margin: 30px 0 20px 0;
-  font-size: 22px;
+
+.container {
+  padding: 20px;
+  min-height: 100vh;   /* ✅ IMPORTANT FIX */
+  width: 100%;         /* ensure full width */
+ 
+  font-family: Arial, sans-serif;
 }
 
-.product-grid {
+/* Page title */
+.page-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Grid layout */
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 
-@media (max-width: 768px) {
-  .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+/* Product card */
+.dashboard-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Product image */
+.dashboard-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Product name */
+.dashboard-card h4 {
+  font-size: 16px;
+  margin: 8px 0;
+  text-align: center;
+  color: #333;
+  height: 40px;
+  overflow: hidden;
+}
+
+/* Price */
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e63946;
+  margin-bottom: 10px;
+}
+
+/* Actions */
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+/* Buttons */
+.card-actions button {
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+/* Add to cart button */
+.card-actions button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.card-actions button:first-child:hover {
+  background-color: #0056b3;
+}
+
+/* Like button */
+.like-btn {
+  background-color: #ff4d6d;
+  color: white;
+}
+
+.like-btn:hover {
+  background-color: #e63950;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .dashboard-card img {
+    height: 150px;
+  }
+
+  .page-title {
+    font-size: 22px;
   }
 }

@@ -1,8 +1,11 @@
-/* ---------------- FULL-WIDTH NAVBAR ---------------- */
-.full-width-navbar {
+.customer-dashboard {
   width: 100%;
-  background-color: #007bff; /* navbar background */
+  min-height: 100vh;
+  background: pink;
+  padding: 20px;
+  box-sizing: border-box;
 }
+
 .fixed-img {
   width: 200px;    /* fixed width */
   height: 200px;   /* fixed height */
@@ -35,7 +38,7 @@
 
 .customer-tabs .tab {
   position: relative; /* for the pseudo-element underline */
-  background-color: transparent;
+  background-color: pink;
   color: white;
   padding: 8px 0;
   font-weight: 500;
@@ -63,6 +66,7 @@
 /* ---------------- DASHBOARD GRID ---------------- */
 .dashboard-grid {
   display: grid;
+  background-color: transparent;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   padding: 20px;
@@ -110,7 +114,7 @@
 
 /* ---------------- PROFILE CARD ---------------- */
 .profile-card {
-  max-width: 500px;
+  max-width: 700px;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -173,4 +177,40 @@
 .review-card {
   border-top: 1px solid #ccc;
   padding: 0.5rem 0;
+}
+/* Add this to your existing CSS file (e.g., cart.css or customer.css) */
+
+button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+  border-radius: 5px; /* Optional, if you want rounded corners */
+}
+
+button:hover {
+  background-color: #4CAF50; /* Change to green color when hovered */
+  color: white; /* Change text color */
+  transform: scale(1.05); /* Slightly enlarge the button for a hover effect */
+}
+
+button:active {
+  transform: scale(1); /* Prevent the button from enlarging when clicked */
+}
+
+/* Specific button styles */
+button.add-to-cart {
+  background-color: #ff9800; /* Orange background for 'Add to Cart' */
+}
+
+button.add-to-cart:hover {
+  background-color: #f57c00; /* Darker orange when hovered */
+}
+
+button.like-button {
+  background-color: #e91e63; /* Pink background for 'Like' button */
+}
+
+button.like-button:hover {
+  background-color: #c2185b; /* Darker pink when hovered */
 }

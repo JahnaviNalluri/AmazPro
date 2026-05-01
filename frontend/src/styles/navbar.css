@@ -1,62 +1,140 @@
+/* Full width navbar background */
 .navbar {
-  background: #2874f0;
-  padding: 12px 40px;
+  width: 100%;
+  background-color:palevioletred; /* same blue theme */
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Inner container */
+.navbar-inner {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  color: white;
+  align-items: center;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
 }
 
-.logo {
-  font-size: 22px;
+/* LOGO */
+.logo a {
+  font-size: 1.8rem;
   font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
 }
 
+/* SEARCH BAR */
 .search-bar {
   display: flex;
-  width: 40%;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
 }
 
 .search-bar input {
-  width: 100%;
-  padding: 8px;
+  width: 50%;
+  max-width: 400px;
+  padding: 8px 12px;
+  border-radius: 5px;
   border: none;
   outline: none;
 }
 
 .search-bar button {
-  background: #ff9f00;
-  color: black;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  color: #0d6efd;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
+.search-bar button:hover {
+  background: #e9ecef;
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* LOGIN / REGISTER LINKS */
 .nav-links a {
-  color: white;
-  margin-left: 20px;
+  color: #fff;
   text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 
 .nav-links a:hover {
-  text-decoration: underline;
-}
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 40px;
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-.nav-links a, .logout-btn {
-  margin: 0 10px;
-  color: white;
-  text-decoration: none;
+/* TAB BUTTONS */
+.nav-links button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s, transform 0.2s;
+}
+
+.nav-links button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* ACTIVE TAB */
+.active-tab {
+  background-color: #fff !important;
+  color: #0d6efd !important;
   font-weight: bold;
 }
 
-.logout-btn {
-  background: crimson;
-  border: none;
-  padding: 6px 12px;
-  cursor: pointer;
+/* LOGOUT BUTTON (highlight) */
+.nav-links button:last-child {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.nav-links button:last-child:hover {
+  background-color: #b02a37;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  .navbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .search-bar {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .search-bar input {
+    width: 70%;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    width: 100%;
+  }
 }

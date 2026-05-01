@@ -1,8 +1,14 @@
+
 .cart-page {
+  background:pink;
   display: flex;
   gap: 2rem;
   padding-top: 80px; /* match header height */
   margin: 0 auto;
+  
+  min-height: 100vh;   /* ✅ IMPORTANT FIX */
+  width: 100%;         /* ensure full width */
+  box-sizing: border-box;
 }
 
 .cart-left {

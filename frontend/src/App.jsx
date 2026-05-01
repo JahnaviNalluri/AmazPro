@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import Liked from "./pages/Liked";
 import PublicLayout from "./layouts/PublicLayout";
 import CustomerLayout from "./layouts/CustomerLayout";
-
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -15,15 +15,16 @@ import VendorDashboard from "./pages/VendorDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import AddProduct from "./pages/AddProduct";
 import CustomerDashboard from "./pages/CustomerDashboard";
-
+import Profile from "./pages/Profile";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-
+        <Route path="/" element={<Navigate to="/home" />} />
         {/* Public */}
         <Route element={<PublicLayout />}>
-          <Route path="/" element={<Home />} />
+          
+          <Route path="/home" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -40,7 +41,9 @@ function App() {
           <Route path="/customer" element={<CustomerDashboard />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/liked" element={<Liked />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/product/:id" element={<ProductDetails />} />
         </Route>
 

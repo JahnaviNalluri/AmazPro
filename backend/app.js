@@ -11,7 +11,7 @@ const productRoutes = require("./src/routes/productRoutes");
 const reviewRoutes = require("./src/routes/reviewRoutes");
 const orderRoutes = require("./src/routes/orderRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
-
+const LikedRoutes=require("./src/routes/likedRoutes");
 const app = express();
 
 
@@ -36,9 +36,11 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/liked",LikedRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/cart", cartRoutes);
+
 
 const port = process.env.PORT || 3000;
 
