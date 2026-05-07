@@ -14,13 +14,17 @@ function Home() {
     window.location.href = "/login";
   };
 
-  const addToCart = (product) => {
-    console.log("Add to cart:", product);
-  };
+  const addToCart = () => {
 
-  const likeProduct = (product) => {
-    console.log("Liked:", product);
-  };
+  navigate("/login");
+};
+
+const likeProduct = () => {
+
+  navigate("/login");
+};
+
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -45,8 +49,7 @@ function Home() {
               <div
                 key={product._id}
                 className="dashboard-card"
-                onClick={() => navigate(`/product/${product._id}`)}
-              >
+                   >
                 <img
                   src={product.images?.[0] || "/placeholder.png"}
                   alt={product.productName}

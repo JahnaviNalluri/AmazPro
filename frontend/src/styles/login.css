@@ -75,3 +75,19 @@
   color: white;
   cursor: pointer;
 }
+.register-text {
+  margin-top: 14px;
+  font-size: 15px;
+  color:black;
+  text-align: center;
+}
+
+.register-text span {
+  color: red;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.register-text span:hover {
+  text-decoration: underline;
+}

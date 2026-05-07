@@ -48,3 +48,19 @@
   font-weight: bold;
   padding: 10px;
 }
+.login-text {
+  margin-top: 14px;
+  font-size: 15px;
+  color: black;
+  text-align: center;
+}
+
+.login-text span {
+  color: red;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.login-text span:hover {
+  text-decoration: underline;
+}

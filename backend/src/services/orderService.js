@@ -1,36 +1,79 @@
 const Order = require("../models/Order");
 const Product = require("../models/Products"); // make sure filename matches
 
-const createOrder = async (orderData, customerId) => {
-    let totalAmount = 0;
+const createOrder = async (
+  orderData,
+  customerId
+) => {
 
-    for (const item of orderData.products) {
-        const product = await Product.findById(item.productId);
+  let totalAmount = 0;
 
-        if (!product) {
-            throw new Error("Product not found");
-        }
+  for (const item of orderData.products) {
 
-        if (product.stock < item.quantity) {
-            throw new Error("Insufficient stock");
-        }
+    const product =
+      await Product.findById(
+        item.productId
+      );
 
-        totalAmount += product.price * item.quantity;
-        product.stock -= item.quantity;
-        await product.save();
+    if (!product) {
+
+      throw new Error(
+        "Product not found"
+      );
     }
 
-    const order = await Order.create({
-        products: orderData.products,
-        customerId,
-        totalAmt: totalAmount,
-        shippingAddress: orderData.shippingAddress,
-        status: "pending"
+    // CHECK STOCK
+
+    if (
+      product.stock <
+      item.quantity
+    ) {
+
+      throw new Error(
+        "Insufficient stock"
+      );
+    }
+
+    // TOTAL
+
+    totalAmount +=
+      product.price *
+      item.quantity;
+
+    // DECREASE STOCK
+
+    product.stock -=
+      item.quantity;
+
+    // INCREASE SOLD
+
+    product.sold +=
+      item.quantity;
+
+    await product.save();
+  }
+
+  // CREATE ORDER
+
+  const order =
+    await Order.create({
+
+      products:
+        orderData.products,
+
+      customerId,
+
+      totalAmt:
+        totalAmount,
+
+      shippingAddress:
+        orderData.shippingAddress,
+
+      status: "pending",
     });
 
-    return order;
+  return order;
 };
-
 const getOrderById = async (orderId) => {
     const order = await Order.findById(orderId).populate("customerId");
 
@@ -59,43 +102,116 @@ const updateOrderStatus = async (orderId, status) => {
     return order;
 };
 
-const cancelOrder = async (orderId, customerId) => {
-    const order = await Order.findById(orderId);
+const cancelOrder = async (
+  orderId,
+  customerId
+) => {
 
-    if (!order) {
-        throw new Error("Order not found");
+  const order =
+    await Order.findById(
+      orderId
+    );
+
+  if (!order) {
+
+    throw new Error(
+      "Order not found"
+    );
+  }
+
+  // SECURITY
+
+  if (
+    order.customerId.toString() !==
+    customerId.toString()
+  ) {
+
+    throw new Error(
+      "Unauthorized"
+    );
+  }
+
+  // ALREADY CANCELLED
+
+  if (
+    order.status ===
+    "cancelled"
+  ) {
+
+    throw new Error(
+      "Order already cancelled"
+    );
+  }
+
+  // RESTORE STOCK
+
+  for (const item of order.products) {
+
+    const product =
+      await Product.findById(
+        item.productId
+      );
+
+    if (product) {
+
+      // ADD STOCK BACK
+
+      product.stock +=
+        item.quantity;
+
+      // REDUCE SOLD
+
+      product.sold -=
+        item.quantity;
+
+      // SAFETY
+
+      if (product.sold < 0) {
+
+        product.sold = 0;
+      }
+
+      await product.save();
     }
+  }
 
-    if (order.customerId.toString() !== customerId.toString()) {
-        throw new Error("Unauthorized to cancel this order");
-    }
+  // UPDATE STATUS
 
-    if (order.status === "delivered") {
-        throw new Error("Delivered order cannot be cancelled");
-    }
+  order.status =
+    "cancelled";
 
-    for (const item of order.products) {
-        const product = await Product.findById(item.productId);
-        if (product) {
-            product.stock += item.quantity;
-            await product.save();
-        }
-    }
+  await order.save();
 
-    order.status = "cancelled";
-    await order.save();
-
-    return order;
+  return order;
 };
-
 const getAllOrders = async () => {
-    const orders = await Order.find()
-        .populate("customerId", "name email")
-        .sort({ createdAt: -1 });
 
-    return orders;
+  const orders =
+    await Order.find()
+
+      .populate(
+        "customerId",
+        "name email"
+      )
+
+      .populate({
+
+        path:
+          "products.productId",
+
+        model: "Product",
+
+        select:
+          "productName images price stock sold",
+
+      })
+
+      .sort({
+        createdAt: -1,
+      });
+
+  return orders;
 };
-
 /* ---------------- VENDOR ORDER UPDATE ---------------- */
 
 const updateOrderStatusByVendor = async (orderId, vendorId, status) => {
@@ -122,7 +238,53 @@ const updateOrderStatusByVendor = async (orderId, vendorId, status) => {
 
     return order;
 };
+/* ---------------- GET VENDOR ORDERS ---------------- */
 
+const getVendorOrders = async (
+  vendorId
+) => {
+
+  const orders =
+    await Order.find()
+
+      .populate(
+        "customerId",
+        "name email phoneno"
+      )
+
+      .populate({
+
+        path:
+          "products.productId",
+
+        model: "Product",
+
+        select:
+          "productName images price stock vendorId sold",
+      })
+
+      .sort({
+        createdAt: -1,
+      });
+
+  // FILTER ONLY ORDERS
+  // HAVING VENDOR PRODUCTS
+
+  const vendorOrders =
+    orders.filter((order) =>
+
+      order.products.some(
+        (item) =>
+
+          item.productId
+            ?.vendorId
+            ?.toString() ===
+          vendorId.toString()
+      )
+    );
+
+  return vendorOrders;
+};
 module.exports = {
     createOrder,
     getOrderById,
@@ -130,5 +292,6 @@ module.exports = {
     updateOrderStatus,
     cancelOrder,
     getAllOrders,
+    getVendorOrders,
     updateOrderStatusByVendor
 };

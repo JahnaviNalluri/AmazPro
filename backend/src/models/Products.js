@@ -21,6 +21,10 @@ const productSchema=mongoose.Schema({
         ref:"User",
         required:true,
     },
+    sold:{
+        type:Number,
+        default:0,
+    },
     isApproved:{
         type:Boolean,
         default:false,

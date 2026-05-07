@@ -155,41 +155,75 @@ const fetchLiked = async () => {
      
 
       {/* ---------------- HOME ---------------- */}
-      {activeTab === "home" && (
-        <div className="dashboard-grid">
-          {products.map((product) => (
-            <div
-              key={product._id}
-              className="dashboard-card"
-               onClick={() => navigate(`/product/${product._id}`)}
-            >
-              <img src={product.images?.[0] || "/placeholder.png"} alt={product.productName} />
-              <h4>{product.productName}</h4>
-              <p>₹ {product.price}</p>
-              
-              <button
-  onClick={(e) => {
-    e.stopPropagation(); // This will stop the event from propagating to parent elements
-    addToCart(product);
-  }}
-  className="add-to-cart" // Apply class here
->
-  Add to Cart
-</button>
+     {/* ---------------- HOME ---------------- */}
 
-<button
-  onClick={(e) => {
-    e.stopPropagation();
-    likeProduct(product);
-  }}
-  className="like-button" // Apply class here
->
-  ❤️ Like
-</button>
-            </div>
-          ))}
+{activeTab === "home" && (
+
+  <div className="dashboard-grid">
+
+    {products
+      .filter(
+        (product) =>
+          product.isApproved === true
+      )
+      .map((product) => (
+
+        <div
+          key={product._id}
+          className="dashboard-card"
+          onClick={() =>
+            navigate(
+              `/product/${product._id}`
+            )
+          }
+        >
+
+          <img
+            src={
+              product.images?.[0] ||
+              "/placeholder.png"
+            }
+            alt={product.productName}
+          />
+
+          <h4>
+            {product.productName}
+          </h4>
+
+          <p>
+            ₹ {product.price}
+          </p>
+
+          <button
+            onClick={(e) => {
+
+              e.stopPropagation();
+
+              addToCart(product);
+
+            }}
+            className="add-to-cart"
+          >
+            Add To Cart
+          </button>
+
+          <button
+            onClick={(e) => {
+
+              e.stopPropagation();
+
+              likeProduct(product);
+
+            }}
+            className="like-button"
+          >
+            ❤️ Like
+          </button>
+
         </div>
-      )}
+      ))}
+  </div>
+)}
 
       {/* ---------------- CART ---------------- */}
     {activeTab === "cart" && (

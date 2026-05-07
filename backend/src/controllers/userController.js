@@ -45,9 +45,64 @@ const completeVendorProfile = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
+const getAllUsers = async (
+  req,
+  res
+) => {
+
+  try {
+
+    const users =
+      await userService.getAllUsers();
+
+    res.status(200).json(users);
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      message:
+        "Failed to fetch users",
+    });
+  }
+};
+const deleteUser = async (
+  req,
+  res
+) => {
+
+  try {
+
+    const deleted =
+      await userService.deleteUser(
+        req.params.id
+      );
+
+    res.status(200).json({
+      message:
+        "User deleted successfully",
+
+      user: deleted,
+    });
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      message:
+        err.message ||
+        "Delete failed",
+    });
+  }
+};
+
 
 module.exports = {
     register,
+    getAllUsers,
+    deleteUser,
     login,
     getProfile,
     updateProfile,

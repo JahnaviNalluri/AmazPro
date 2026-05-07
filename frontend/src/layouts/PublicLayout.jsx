@@ -1,11 +1,37 @@
-import Navbar from "../components/Navbar";
-import { Outlet } from "react-router-dom";
+import {
+  Outlet,
+  useLocation
+} from "react-router-dom";
+
+import Navbar
+  from "../components/Navbar";
 
 function PublicLayout() {
+
+  const location =
+    useLocation();
+
+  // HIDE NAVBAR
+  // ON LOGIN/REGISTER
+
+  const hideNavbar =
+
+    location.pathname ===
+      "/login" ||
+
+    location.pathname ===
+      "/register";
+
   return (
+
     <>
-      <Navbar />
+
+      {!hideNavbar && (
+        <Navbar />
+      )}
+
       <Outlet />
+
     </>
   );
 }

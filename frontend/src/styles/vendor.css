@@ -1,0 +1,549 @@
+/* ---------------- MAIN DASHBOARD ---------------- */
+
+.customer-dashboard {
+  min-height: 100vh;
+  background-color: pink;
+  padding-bottom: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ---------------- NAVBAR ---------------- */
+
+.top-navbar {
+  width: 100%;
+  background-color: lightcoral;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  color: white;
+  margin-right: 15px;
+}
+
+.top-navbar button {
+  border: none;
+  background-color: white;
+  color: lightcoral;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.top-navbar button:hover {
+  background-color: #ffe3e3;
+  transform: scale(1.05);
+}
+
+.logout-btn {
+  background-color: crimson !important;
+  color: white !important;
+}
+
+.logout-btn:hover {
+  background-color: darkred !important;
+}
+
+/* ---------------- GRID ---------------- */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+  padding: 25px;
+}
+
+/* ---------------- CARD ---------------- */
+
+.dashboard-card {
+  background-color: white;
+  border-radius: 18px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.dashboard-card h4 {
+  margin-top: 12px;
+  color: #333;
+}
+
+.dashboard-card p {
+  margin-top: 6px;
+  color: #555;
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.dashboard-card button {
+  margin-top: 10px;
+  margin-right: 8px;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+/* Add To Cart */
+
+.dashboard-card button:nth-child(4) {
+  background-color: lightcoral;
+  color: white;
+}
+
+.dashboard-card button:nth-child(4):hover {
+  background-color: #ff5f5f;
+}
+
+/* Like */
+
+.dashboard-card button:nth-child(5) {
+  background-color: hotpink;
+  color: white;
+}
+
+.dashboard-card button:nth-child(5):hover {
+  background-color: deeppink;
+}
+
+/* Apply Offer */
+
+.dashboard-card button:nth-child(6) {
+  background-color: orange;
+  color: white;
+}
+
+.dashboard-card button:nth-child(6):hover {
+  background-color: darkorange;
+}
+
+/* Delete */
+
+.dashboard-card button:nth-child(7) {
+  background-color: crimson;
+  color: white;
+}
+
+.dashboard-card button:nth-child(7):hover {
+  background-color: darkred;
+}
+
+/* ---------------- PROFILE ---------------- */
+
+.profile-card {
+  width: 90%;
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+.profile-card h2,
+.profile-card h3 {
+  color: lightcoral;
+  margin-bottom: 20px;
+}
+
+.profile-card p {
+  margin-bottom: 12px;
+  color: #444;
+}
+
+.profile-card input,
+.profile-card textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.profile-card button {
+  margin-right: 10px;
+  border: none;
+  background-color: lightcoral;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.profile-card button:hover {
+  background-color: #ff6f6f;
+}
+
+/* ---------------- ORDER PRODUCT ---------------- */
+
+.order-product {
+  margin-top: 15px;
+  background-color: #fff0f3;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.order-product img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.order-product h5 {
+  margin-top: 10px;
+  color: #333;
+}
+
+/* ---------------- SELECT ---------------- */
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 12px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* ---------------- HEADINGS ---------------- */
+
+h2,
+h3 {
+  text-align: center;
+  margin-top: 25px;
+  color: #d6336c;
+}
+
+/* ---------------- STATS BOX ---------------- */
+
+.stats-box {
+  width: 90%;
+  max-width: 700px;
+  margin: 25px auto;
+  background-color: white;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+.stats-box h2 {
+  color: lightcoral;
+  margin-bottom: 20px;
+}
+
+.stats-box p {
+  margin-top: 12px;
+  font-size: 18px;
+  color: #444;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media screen and (max-width: 768px) {
+
+  .top-navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-left {
+    justify-content: center;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .dashboard-card img {
+    height: 180px;
+  }
+}
+/* ---------------- ADD PRODUCT BUTTON ---------------- */
+
+.add-product-btn {
+  background-color: lightcoral;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.add-product-btn:hover {
+  background-color: #ff6666;
+  transform: scale(1.05);
+}
+
+/* ---------------- OFFER BUTTON ---------------- */
+
+.offer-btn {
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  background-color: orange;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.offer-btn:hover {
+  background-color: darkorange;
+}
+
+/* ---------------- EDIT BUTTON ---------------- */
+
+.edit-btn {
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  background-color: royalblue;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-btn:hover {
+  background-color: blue;
+}
+
+/* ---------------- DELETE BUTTON ---------------- */
+
+.delete-btn {
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  background-color: crimson;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+}
+/* ---------------- ADD PRODUCT FORM ---------------- */
+
+.add-product-form {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+.add-product-form h2 {
+  text-align: center;
+  color: lightcoral;
+  margin-bottom: 20px;
+}
+
+.add-product-form input,
+.add-product-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.add-product-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submit-product-btn {
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  background-color: lightcoral;
+  color: white;
+  padding: 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.submit-product-btn:hover {
+  background-color: #ff6666;
+}
+.vendor-orders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.vendor-order-card {
+  background: white;
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.vendor-order-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background: #fff0f3;
+  padding: 18px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.vendor-products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.vendor-product-item {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  background: #fafafa;
+  padding: 14px;
+  border-radius: 15px;
+}
+
+.vendor-product-item img {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.vendor-product-item h4 {
+  margin-bottom: 6px;
+  color: #d6336c;
+}
+
+.vendor-order-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.vendor-order-footer select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+.my-products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.add-product-btn {
+  background: lightcoral;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.stock-controls {
+  margin-top: 12px;
+}
+
+.stock-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.stock-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: lightcoral;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.stock-btn:hover {
+  opacity: 0.85;
+}
+
+.vendor-product-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.offer-btn {
+  flex: 1;
+  background: #ff85a2;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  flex: 1;
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}

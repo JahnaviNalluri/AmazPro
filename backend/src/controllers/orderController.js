@@ -51,16 +51,51 @@ const cancelOrder = async (req, res) => {
     }
 };
 
-const getAllOrders = async (req, res) => {
-    try {
-        const orders = await orderService.getAllOrders();
-        res.status(200).json(orders);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({
-            message: "Failed to fetch orders"
+const Order =
+  require("../models/Order");
+
+// ---------------- GET ALL ORDERS ----------------
+
+const getAllOrders = async (
+  req,
+  res
+) => {
+
+  try {
+
+    const orders =
+      await Order.find()
+
+        // CUSTOMER DETAILS
+        .populate(
+          "customerId",
+          "name email phoneno address"
+        )
+
+        // PRODUCT DETAILS
+        .populate({
+          path:
+            "products.productId",
+
+          select:
+            "productName images price stock vendorId",
+        })
+
+        .sort({
+          createdAt: -1,
         });
-    }
+
+    res.status(200).json(orders);
+
+  } catch (err) {
+
+    console.error(err);
+
+    res.status(500).json({
+      message:
+        "Failed to fetch orders",
+    });
+  }
 };
 
 /* ---------------- VENDOR ORDER UPDATE ---------------- */
@@ -84,6 +119,32 @@ const updateOrderStatusByVendor = async (req, res) => {
         });
     }
 };
+/* ---------------- GET VENDOR ORDERS ---------------- */
+
+const getVendorOrders =
+  async (req, res) => {
+
+    try {
+
+      const orders =
+        await orderService.getVendorOrders(
+          req.user.id
+        );
+
+      res.status(200).json(
+        orders
+      );
+
+    } catch (err) {
+
+      console.error(err);
+
+      res.status(500).json({
+        message:
+          "Failed to fetch vendor orders",
+      });
+    }
+  };
 
 module.exports = {
     createOrder,
@@ -92,5 +153,6 @@ module.exports = {
     updateOrderStatus,
     cancelOrder,
     getAllOrders,
+    getVendorOrders,
     updateOrderStatusByVendor
 };

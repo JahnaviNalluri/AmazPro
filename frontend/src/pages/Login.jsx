@@ -54,6 +54,21 @@ function Login() {
         />
 
         <button type="submit">Login</button>
+        <br></br>
+        <p className="register-text">
+
+  Not a registered user?
+
+  <span
+    onClick={() =>
+      navigate("/register")
+    }
+  >
+    {" "}
+    Register here
+  </span>
+
+</p>
       </form>
     </div>
   );

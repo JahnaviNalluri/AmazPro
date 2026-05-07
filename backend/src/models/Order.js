@@ -20,6 +20,7 @@ const orderSchema=mongoose.Schema({
     customerId:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
+        ref:"User",
     },
     totalAmt:{
         type:Number,
@@ -37,6 +38,7 @@ const orderSchema=mongoose.Schema({
         type:String,
         required:true,
     }
-})
+    
+},{timestamps :true,});
 
 module.exports=mongoose.model("Order",orderSchema);

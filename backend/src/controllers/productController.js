@@ -41,24 +41,38 @@ const updateProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
-  try {
-    // Check admin role
-    if (req.user.role !== "admin" || req.user.role!=="vendor")  {
-      return res.status(403).json({ message: "Not authorized" });
-    }
-    //delete ki admin access vunda, vendor cannot delete
 
-    const deleted = await productService.deleteProduct(req.params.id);
+  try {
+
+    // only admin or vendor
+    if (
+      req.user.role !== "admin" &&
+      req.user.role !== "vendor"
+    ) {
+
+      return res.status(403).json({
+        message: "Not authorized",
+      });
+    }
+
+    const deleted =
+      await productService.deleteProduct(
+        req.params.id
+      );
 
     res.json({
-      message: "Product deleted successfully",
-      product: deleted
+      message:
+        "Product deleted successfully",
+      product: deleted,
     });
 
   } catch (err) {
+
     console.error(err);
+
     res.status(500).json({
-      message: err.message || "Delete failed"
+      message:
+        err.message || "Delete failed",
     });
   }
 };
@@ -74,7 +88,7 @@ const approveProduct = async (req, res) => {
 
 const getVendorProducts = async (req, res) => {
   try {
-    const vendorId = req.user._id;  // 🔥 from protect middleware
+    const vendorId = req.user._id || req.user.id; // 🔥 from protect middleware
 
     const products = await productService.getVendorProducts(vendorId);
 

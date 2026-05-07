@@ -70,9 +70,9 @@ function Orders() {
 
             {order.products?.map((prod) => {
               const product = prod.productId;
-
+               if (!product) return null;
               return (
-                <div className="order-product-modern" key={product._id}>
+                <div className="order-product-modern" key={product?._id}>
 
                   {/* IMAGE */}
                   <img
@@ -83,7 +83,7 @@ function Orders() {
 
                   {/* INFO */}
                   <div className="order-info">
-                    <h4>{product.productName}</h4>
+                    <h4>{product?.productName}</h4>
                     <p>Qty: {prod.quantity}</p>
                     <p>₹ {prod.price}</p>
 

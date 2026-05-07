@@ -89,10 +89,23 @@ const deleteUser = async (userId) => {
     return await User.findByIdAndDelete(userId);
 };
 
+const getAllUsers = async () => {
+
+  const users =
+    await User.find().select(
+      "-password"
+    );
+
+  return users;
+};
+
+
 
 module.exports = {
     registerUser,
     loginUser,
+    getAllUsers,
+
     getUserById,
     updateProfile,
     completeVendorProfile,
