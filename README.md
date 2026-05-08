@@ -80,31 +80,7 @@ frontend
 
 ---
 
-## 👥 User Roles
 
-### Customer
-
-- Add products to cart
-- Like products
-- Place orders
-- Manage profile
-
-### Vendor
-
-- Add products
-- Update products
-- Manage product stock
-- View vendor orders
-- Update order status
-
-### Admin
-
-- Approve products
-- View all users
-- Manage all orders
-- Delete users/products
-
----
 
 # ✨ Features
 
