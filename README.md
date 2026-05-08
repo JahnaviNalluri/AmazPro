@@ -2,7 +2,7 @@
 
 A full-stack e-commerce platform built using the MERN stack (**MongoDB, Express.js, React.js, Node.js**).
 
-AmazPro allows customers to browse products, manage carts and liked items, place orders, and review products, while vendors and admins can manage products and orders through role-based dashboards.
+AmazPro allows customers to manage carts and liked items, place orders, while vendors and admins can manage products and orders through role-based dashboards.
 
 ---
 
@@ -15,7 +15,6 @@ AmazPro provides:
 - Product management for vendors
 - Cart & liked products functionality
 - Order management system
-- Product reviews and ratings
 - Vendor and admin dashboards
 - Protected frontend routes
 - Swagger API documentation
@@ -85,11 +84,9 @@ frontend
 
 ### Customer
 
-- Browse products
-- Add to cart
+- Add products to cart
 - Like products
 - Place orders
-- Add reviews
 - Manage profile
 
 ### Vendor
@@ -162,16 +159,6 @@ frontend
 - Admin order management
 - Customer order history
 - Automatic stock updates
-
----
-
-## ⭐ Product Reviews
-
-- Add reviews
-- Update reviews
-- Delete reviews
-- Product review listing
-- One review per customer per product
 
 ---
 
@@ -291,17 +278,6 @@ frontend
 | PUT | `/api/orders/status/:id` | Update order status |
 | PUT | `/api/orders/cancel/:id` | Cancel order |
 | PUT | `/api/orders/vendor/:id` | Vendor order update |
-
----
-
-## ⭐ Reviews
-
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| POST | `/api/reviews` | Create review |
-| GET | `/api/reviews/:productId` | Product reviews |
-| PUT | `/api/reviews/:id` | Update review |
-| DELETE | `/api/reviews/:id` | Delete review |
 
 ---
 
@@ -446,7 +422,6 @@ npm run dev
 
 - Payment gateway integration
 - Product search & filters
-- Product ratings system
 - Real-time order tracking
 - Email notifications
 - Wishlist sharing
@@ -469,7 +444,3 @@ npm run dev
 - Designed for scalability and maintainability
 
 ---
-
-# 👨‍💻 Author
-
-Developed by **Jahnavi**
