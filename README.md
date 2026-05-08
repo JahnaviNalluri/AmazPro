@@ -124,10 +124,37 @@ frontend
 - Create products
 - Update products
 - Delete products
-- Approve products
-- Product stock management
+- Approve products by admin
 - Vendor-specific product handling
+- Product stock management
 - Product details page
+- Products become visible to users only after admin approval
+
+---
+
+## 👥 User Roles
+
+### Customer
+
+- Add approved products to cart
+- Like approved products
+- Place orders
+- Manage profile
+
+### Vendor
+
+- Add products
+- Update products
+- Manage stock
+- View vendor orders
+- Update order status
+
+### Admin
+
+- Approve vendor products
+- View all users
+- Manage all orders
+- Delete users/products
 
 ---
 
